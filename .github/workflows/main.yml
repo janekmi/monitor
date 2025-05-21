@@ -15,6 +15,12 @@ jobs:
           token: ${{ secrets.PRIVATE_URLS_PAT }}
       - name: Check an URL
         run: |
-          tree .
+          echo "::add-mask::kulik.txt"
+          IFS=',' cat kulik.txt | read -ra values
+          for value in "${values[@]}"; do
+            echo "::add-mask::$value"
+            echo "$value"
+          done
+
 # code=$(curl -o /dev/null --silent --head --write-out '%{http_code}\n' ${{secrets.SECRET_URL}})
 # [ "$code" -eq 401 ]
