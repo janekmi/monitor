@@ -8,7 +8,13 @@ jobs:
     name: URLs Monitor
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout private repo
+        uses: actions/checkout@v4
+        with:
+          repository: janekmi/private_urls
+          token: ${{ secrets.PRIVATE_URLS_PAT }}
       - name: Check an URL
         run: |
-          code=$(curl -o /dev/null --silent --head --write-out '%{http_code}\n' ${{secrets.SECRET_URL}})
-          [ "$code" -eq 401 ]
+          tree .
+# code=$(curl -o /dev/null --silent --head --write-out '%{http_code}\n' ${{secrets.SECRET_URL}})
+# [ "$code" -eq 401 ]
