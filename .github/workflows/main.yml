@@ -16,10 +16,9 @@ jobs:
       - name: Check an URL
         run: |
           echo "::add-mask::kulik.txt"
-          IFS=',' cat kulik.txt | read -ra values
+          IFS=',' read -r -a values < kulik.txt
           for value in "${values[@]}"; do
-            echo "::add-mask::$value"
-            echo "$value"
+            echo "Processing: $value"
           done
 
 # code=$(curl -o /dev/null --silent --head --write-out '%{http_code}\n' ${{secrets.SECRET_URL}})
