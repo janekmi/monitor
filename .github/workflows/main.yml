@@ -1,6 +1,7 @@
 name: Monitor
 
 on:
+  workflow_dispatch:
   push:
 
 jobs:
@@ -15,6 +16,3 @@ jobs:
           token: ${{ secrets.PRIVATE_URLS_PAT }}
       - name: Check an URL
         run: ./process.sh
-
-# code=$(curl -o /dev/null --silent --head --write-out '%{http_code}\n' ${{secrets.SECRET_URL}})
-# [ "$code" -eq 401 ]
